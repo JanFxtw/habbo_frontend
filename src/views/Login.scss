@@ -1,0 +1,12 @@
+.login {
+    height: 86%;
+
+    .background {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0.3;
+        background-image: url('../../src/assets/backgrounds/Index_Background_2.png');
+        background-size: cover;
+    }
+}

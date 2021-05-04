@@ -8,9 +8,9 @@
         <v-card
             flat
             tile
-            class="lighten-1 white--text text-center"
+            class="white--text"
         >
-            <v-card-text class="pa-4">
+            <v-card-text class="pa-4 text-center">
                 Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet.
                 Mauris cursus commodo interdum. Praesent ut risus eget metus luctus
                 accumsan id ultrices nunc. Sed at orci sed massa consectetur
@@ -24,8 +24,8 @@
 
             <v-divider />
 
-            <v-card-text class="text--xs pa-4">
-                {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+            <v-card-text class="caption pa-4">
+                © {{ appName }} | Impressum | Datenschutz
             </v-card-text>
         </v-card>
     </v-footer>
@@ -33,10 +33,11 @@
 
 <script>
 export default {
+    name: 'VFooterBar',
     data()
     {
         return {
-
+            appName: process.env.VUE_APP_NAME
         };
     }
 };
