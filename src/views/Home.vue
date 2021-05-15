@@ -1,7 +1,6 @@
 <template>
     <div class="home">
         <div class="background" />
-        asd
     </div>
 </template>
 
@@ -24,3 +23,7 @@ export default {
     }
 };
 </script>
+
+<style lang="scss">
+@import './Home.scss';
+</style>
