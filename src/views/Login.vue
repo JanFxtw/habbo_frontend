@@ -20,7 +20,7 @@
                                     class="ml-3"
                                     contain height="48px"
                                     position="center right"
-                                    src="../assets/page_icon.png"
+                                    src="@/assets/page_icon.png"
                                 />
                             </v-flex>
                         </v-layout>

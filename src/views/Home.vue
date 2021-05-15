@@ -1,24 +1,27 @@
 <template>
     <div class="home">
         <div class="background" />
+
+        <splash-screen v-if="user" />
+        <dashboard v-else />
     </div>
 </template>
 
 <script>
+import SplashScreen from '@/components/views/Home/SplashScreen';
+import Dashboard from '@/components/views/Home/Dashboard';
+import User from '@/store/models/User';
+
 export default {
-    data()
-    {
-        return {
-            password: null,
-            email: null,
-            signingIn: false,
-            appName: process.env.VUE_APP_NAME
-        };
+    name: 'Home',
+    components: {
+        SplashScreen,
+        Dashboard
     },
-    methods: {
-        signIn()
+    computed: {
+        user()
         {
-            this.signingIn = true;
+            return User.find(1);
         }
     }
 };
