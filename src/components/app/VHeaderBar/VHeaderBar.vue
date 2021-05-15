@@ -20,7 +20,10 @@
             <v-icon>mdi-trophy</v-icon>
         </v-btn>
 
-        <v-btn icon>
+        <v-btn
+            icon
+            @click="$router.push({name: 'Help'}).catch(() => {})"
+        >
             <v-icon>mdi-help</v-icon>
         </v-btn>
 
