@@ -123,7 +123,7 @@ export default {
                 await loginUser(userData)
                     .then((response) =>
                     {
-                        const {authenticated, id, name, email} = response;
+                        const {authenticated, id, name, email, rank} = response;
 
                         if (authenticated)
                         {
@@ -132,7 +132,8 @@ export default {
                                     id,
                                     authenticated: true,
                                     name,
-                                    email
+                                    email,
+                                    rank
                                 }
                             });
 

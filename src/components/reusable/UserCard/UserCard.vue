@@ -7,7 +7,7 @@
         <v-card class="user-card">
             <v-card v-if="user">
                 <v-card-title class="headline">
-                    Profil - {{ user.name }}
+                    Profil - {{ userProfile.name }}
                 </v-card-title>
 
                 <v-divider />
@@ -19,7 +19,7 @@
                         </v-col>
                         <v-col class="user-data-area text-center" cols="6">
                             <div class="headline">
-                                <v-icon class="user-points ma-5" v-text="user.points" />
+                                <v-icon class="user-points ma-5" v-text="userProfile.points" />
                             </div>
                             <div class="headline">
                                 Chefpilot
@@ -27,6 +27,35 @@
                         </v-col>
                     </v-row>
                 </v-card-text>
+
+                <v-divider v-if="user.rank" />
+                <div v-if="user.rank">
+                    <v-card-title class="headline">
+                        Administration
+                    </v-card-title>
+                    <v-card-text>
+                        <v-btn
+                            color="primary"
+                            class="mt-2"
+                        >
+                            Historie
+                        </v-btn>
+                        <v-btn
+                            color="orange"
+                            dark
+                            class="ml-2 mt-2"
+                        >
+                            Bearbeiten
+                        </v-btn>
+                        <v-btn
+                            color="red"
+                            dark
+                            class="ml-2 mt-2"
+                        >
+                            Strafe
+                        </v-btn>
+                    </v-card-text>
+                </div>
 
                 <v-divider />
 
@@ -47,6 +76,7 @@
 
 <script>
 import {getUserData} from '@/api/user';
+import User from '@/store/models/User';
 
 export default {
     name: 'UserCard',
@@ -67,7 +97,7 @@ export default {
         };
     },
     computed: {
-        user: {
+        userProfile: {
             set(user)
             {
                 this.userData = user;
@@ -76,6 +106,10 @@ export default {
             {
                 return this.userData;
             }
+        },
+        user()
+        {
+            return User.query().first();
         }
     },
     watch: {
@@ -96,7 +130,7 @@ export default {
                 await getUserData(userData)
                     .then((response) =>
                     {
-                        this.user = response;
+                        this.userProfile = response;
                     });
             }
             catch (error)
@@ -106,7 +140,7 @@ export default {
         },
         avaterSource()
         {
-            return `https://www.habbo.de/habbo-imaging/avatarimage?hb=image&user=${this.user.name}&headonly=0&direction=2&head_direction=2&action=&gesture=&size=l`;
+            return `https://www.habbo.de/habbo-imaging/avatarimage?hb=image&user=${this.userProfile.name}&headonly=0&direction=2&head_direction=2&action=&gesture=&size=l`;
         }
     }
 };
