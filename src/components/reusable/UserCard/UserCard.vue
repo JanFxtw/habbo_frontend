@@ -1,7 +1,7 @@
 <template>
     <v-dialog
         v-model="value"
-        width="500px"
+        width="600px"
         @click:outside="$emit('input', false)"
     >
         <v-card class="user-card">
@@ -29,33 +29,11 @@
                 </v-card-text>
 
                 <v-divider v-if="user.rank" />
-                <div v-if="user.rank">
-                    <v-card-title class="headline">
-                        Administration
-                    </v-card-title>
-                    <v-card-text>
-                        <v-btn
-                            color="primary"
-                            class="mt-2"
-                        >
-                            Historie
-                        </v-btn>
-                        <v-btn
-                            color="orange"
-                            dark
-                            class="ml-2 mt-2"
-                        >
-                            Bearbeiten
-                        </v-btn>
-                        <v-btn
-                            color="red"
-                            dark
-                            class="ml-2 mt-2"
-                        >
-                            Strafe
-                        </v-btn>
-                    </v-card-text>
-                </div>
+
+                <user-card-admin
+                    v-if="user.rank"
+                    :user-id="userId"
+                />
 
                 <v-divider />
 
@@ -77,9 +55,13 @@
 <script>
 import {getUserData} from '@/api/user';
 import User from '@/store/models/User';
+import UserCardAdmin from './UserCardAdmin';
 
 export default {
     name: 'UserCard',
+    components: {
+        UserCardAdmin
+    },
     props: {
         value: {
             type: Boolean,
@@ -93,7 +75,7 @@ export default {
     data()
     {
         return {
-            userData: null
+            userData: 'Frank'
         };
     },
     computed: {
