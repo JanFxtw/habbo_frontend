@@ -21,7 +21,7 @@ export default {
     computed: {
         user()
         {
-            return User.find(1);
+            return User.query().first();
         }
     }
 };

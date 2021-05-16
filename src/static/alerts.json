@@ -1,0 +1,6 @@
+{
+    "loginError": {
+      "headline": "Fehler beim Anmelden",
+      "text": "Bei deiner Anmeldung ist ein Fehler aufgetreten. \u00dcberpr\u00fcfe deine angebene Mail und das dazugeh\u00f6rige Passwort."
+    }
+}

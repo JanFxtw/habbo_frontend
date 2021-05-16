@@ -45,13 +45,15 @@
             v-if="user"
             icon
         >
-            <v-icon>mdi-cog</v-icon>
+            <v-avatar>
+                <img :src="avaterSource(user.name)">
+            </v-avatar>
         </v-btn>
 
         <v-btn
             v-if="user"
             icon
-            @click="logout"
+            @click="logoutUser"
         >
             <v-icon>mdi-logout</v-icon>
         </v-btn>
@@ -60,6 +62,7 @@
 
 <script>
 import User from '@/store/models/User';
+import {logoutUser} from '@/api/authentication';
 
 export default {
     name: 'VHeaderBar',
@@ -72,16 +75,39 @@ export default {
     computed: {
         user()
         {
-            return User.find(1);
+            return User.query().first();
         }
     },
     methods: {
-        logout()
+        async logoutUser()
         {
-            if (!this.user) { return; }
+            try
+            {
+                await logoutUser()
+                    .then((response) =>
+                    {
+                        const {logout} = response;
 
-            User.delete(1);
-            this.$router.push({name: 'Home'}).catch(() => {});
+                        if (logout)
+                        {
+                            User.delete(this.user.id);
+                            this.$router.push({name: 'Ranking'}).catch(() => {});
+                        }
+                    });
+            }
+            catch (error)
+            {
+                /* Alert.insert({
+                    data: {
+                        type: 2,
+                        text: 'loginError'
+                    }
+                }); */
+            }
+        },
+        avaterSource()
+        {
+            return `https://www.habbo.de/habbo-imaging/avatarimage?hb=image&user=${this.user.name}&headonly=1&direction=2&head_direction=2&action=&gesture=&size=m`;
         }
     }
 };

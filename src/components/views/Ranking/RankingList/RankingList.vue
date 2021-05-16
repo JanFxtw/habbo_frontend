@@ -29,16 +29,14 @@
                     color="primary"
                 >
                     <v-list-item
-                        v-for="(user, i) in userList"
+                        v-for="(user, i) in selectedList"
                         :key="i"
                     >
                         <v-list-item-icon>
                             <v-icon v-text="user.points" />
                         </v-list-item-icon>
                         <v-avatar>
-                            <img
-                                :src="avaterSource(user.name)"
-                            >
+                            <img :src="avaterSource(user.name)">
                         </v-avatar>
                         <v-list-item-content>
                             <v-list-item-title v-text="user.name" />
@@ -56,7 +54,7 @@
             >
                 <v-pagination
                     v-model="selectedPage"
-                    :length="15"
+                    :length="paginationLength"
                     :total-visible="7"
                 />
             </v-row>
@@ -65,74 +63,56 @@
 </template>
 
 <script>
+import {getRankingList} from '@/api/ranking';
+
 export default {
     name: 'RankingList',
     data()
     {
         return {
             appName: process.env.VUE_APP_NAME,
-            userList: [
-                {
-                    name: 'SFU-Loc',
-                    points: '500'
-                },
-                {
-                    name: 'Bodyguard@Nr.1',
-                    points: '400'
-                },
-                {
-                    name: 'Darsen',
-                    points: '300'
-                },
-                {
-                    name: 'Enqelchen22',
-                    points: '200'
-                },
-                {
-                    name: 'atas9999',
-                    points: '100'
-                },
-                {
-                    name: 'Yumarik',
-                    points: '100'
-                },
-                {
-                    name: 'Schrott-Lager',
-                    points: '100'
-                },
-                {
-                    name: 'Michi17',
-                    points: '100'
-                },
-                {
-                    name: 'Yumarik',
-                    points: '100'
-                },
-                {
-                    name: 'Gallium',
-                    points: '100'
-                },
-                {
-                    name: 'deti',
-                    points: '100'
-                },
-                {
-                    name: 'cundero',
-                    points: '100'
-                },
-                {
-                    name: 'lliissssii',
-                    points: '100'
-                }
-            ],
             selectedUser: null,
-            selectedPage: 1
+            selectedPage: 1,
+            userList: [],
+            paginationLength: 1
         };
+    },
+    computed: {
+        selectedList()
+        {
+            return this.userList.slice(
+                0 + ((this.selectedPage - 1) * 15), 15 + ((this.selectedPage - 1) * 15)
+            );
+        }
+    },
+    created()
+    {
+        this.updateUserList();
     },
     methods: {
         avaterSource(name)
         {
             return `https://www.habbo.de/habbo-imaging/avatarimage?hb=image&user=${name}&headonly=1&direction=2&head_direction=2&action=&gesture=&size=m`;
+        },
+        async updateUserList()
+        {
+            try
+            {
+                await getRankingList()
+                    .then((response) =>
+                    {
+                        this.userList = response;
+                        for (let i = 0; i < 50; i++)
+                        {
+                            this.userList.push({name: 'asd', points: '123'});
+                        }
+                        this.paginationLength = Math.ceil(this.userList.length / 15);
+                    });
+            }
+            catch (error)
+            {
+                console.log(error);
+            }
         }
     }
 };

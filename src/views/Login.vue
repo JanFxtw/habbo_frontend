@@ -84,7 +84,8 @@
 </template>
 
 <script>
-import {loginUser, loginState} from '@/api/authentication';
+import {loginUser} from '@/api/authentication';
+import User from '@/store/models/User';
 
 export default {
     name: 'Login',
@@ -122,29 +123,24 @@ export default {
                 await loginUser(userData)
                     .then((response) =>
                     {
-                        console.log(response);
-                        const {authenticated} = response;
+                        const {authenticated, id, name, email} = response;
 
                         if (authenticated)
                         {
-                            /* User.update({
-                                where: 1,
+                            User.insert({
                                 data: {
-                                    authenticated: true
+                                    id,
+                                    authenticated: true,
+                                    name,
+                                    email
                                 }
-                            }); */
+                            });
 
-                            // this.$router.push({name: 'Home'});
-                            console.log('login successful');
+                            this.$router.push({name: 'Home'});
                         }
 
                         this.signingIn = false;
                         this.password = '';
-                    })
-                    .then(() =>
-                    {
-                        loginState()
-                            .then(response => console.log(response));
                     });
             }
             catch (error)

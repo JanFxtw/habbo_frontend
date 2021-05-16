@@ -10,7 +10,8 @@ export default class User extends Model
     {
         return {
             id: this.number(1),
-            authenticated: this.boolean(false)
+            authenticated: this.boolean(false),
+            name: this.string('')
         };
     }
 }

@@ -36,7 +36,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) =>
 {
-    const user = User.find(1);
+    const user = User.query().first();
 
     if (to.meta.authRequired && !user)
     {
