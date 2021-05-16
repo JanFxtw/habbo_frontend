@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import {getUserList} from '@/api/ranking';
+import {addPoints, getUserList} from '@/api/ranking';
 import ConsentDialog from '@/components/reusable/ConsentDialog';
 
 export default {
@@ -103,9 +103,26 @@ export default {
                 console.log(error);
             }
         },
-        addPoints()
+        async addPoints()
         {
-            console.log('add');
+            try
+            {
+                const userData = {
+                    users: this.userList,
+                    points: this.points
+                };
+
+                await addPoints(userData)
+                    .then((response) =>
+                    {
+                        console.log(response);
+                        this.$router.push({name: 'Ranking'});
+                    });
+            }
+            catch (error)
+            {
+                console.log(error);
+            }
         }
     }
 };

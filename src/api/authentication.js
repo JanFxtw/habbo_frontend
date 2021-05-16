@@ -4,9 +4,7 @@ const url = process.env.VUE_APP_API_URL;
 
 const loginUser = userData => new AjaxRequest(`${url}authentication/login.php`)
     .expectJson()
-    .post({
-        userData
-    });
+    .post({userData});
 
 const logoutUser = () => new AjaxRequest(`${url}authentication/logout.php`)
     .expectJson()

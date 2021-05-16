@@ -53,7 +53,7 @@ export default {
     methods: {
         consentAction()
         {
-            this.$emit('input', true);
+            this.$emit('input', false);
             this.$emit('consent', true);
         }
     }

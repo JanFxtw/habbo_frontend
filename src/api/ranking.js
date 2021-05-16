@@ -12,10 +12,12 @@ const getUserList = () => new AjaxRequest(`${url}ranking/getUserList.php`)
 
 const getUserRanking = id => new AjaxRequest(`${url}ranking/userRanking.php`)
     .expectJson()
-    .post({
-        id
-    });
+    .post({id});
+
+const addPoints = userData => new AjaxRequest(`${url}ranking/addPoints.php`)
+    .expectJson()
+    .post({userData});
 
 export {
-    getRankingList, getUserRanking, getUserList
+    getRankingList, getUserRanking, getUserList, addPoints
 };
