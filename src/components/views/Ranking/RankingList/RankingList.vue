@@ -31,6 +31,7 @@
                     <v-list-item
                         v-for="(user, i) in selectedList"
                         :key="i"
+                        @click="$emit('openUserCard', user.id)"
                     >
                         <v-list-item-icon>
                             <v-icon v-text="user.points" />

@@ -47,6 +47,7 @@
                 <v-btn
                     color="green"
                     class="float-right white--text"
+                    :disabled="!selectedUser.length"
                     @click="showConfirm = true"
                 >
                     Punkte hinzufügen
