@@ -69,23 +69,41 @@
         <v-btn
             v-if="user"
             icon
-            @click="logoutUser"
+            @click="showLogoutConfirm = true"
         >
             <v-icon>mdi-logout</v-icon>
         </v-btn>
+
+        <consent-dialog
+            v-if="user"
+            v-model="showLogoutConfirm"
+            @consent="logoutUser"
+        >
+            <template #headline>
+                Abmeldung
+            </template>
+            <template #content>
+                Möchtest du dich von {{ user.name }} abmelden?
+            </template>
+        </consent-dialog>
     </v-app-bar>
 </template>
 
 <script>
 import User from '@/store/models/User';
 import {logoutUser} from '@/api/authentication';
+import ConsentDialog from '@/components/reusable/ConsentDialog';
 
 export default {
     name: 'VHeaderBar',
+    components: {
+        ConsentDialog
+    },
     data()
     {
         return {
-            appName: process.env.VUE_APP_NAME
+            appName: process.env.VUE_APP_NAME,
+            showLogoutConfirm: false
         };
     },
     computed: {

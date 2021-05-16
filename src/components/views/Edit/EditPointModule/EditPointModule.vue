@@ -57,7 +57,14 @@
         <consent-dialog
             v-model="showConfirm"
             @consent="addPoints"
-        />
+        >
+            <template #headline>
+                Aktion bestätigen
+            </template>
+            <template #content>
+                Möchtest du die Punktevergabe durchführen?
+            </template>
+        </consent-dialog>
     </div>
 </template>
 

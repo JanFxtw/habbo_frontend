@@ -1,5 +1,5 @@
 <template>
-    <div class="help">
+    <div class="edit">
         <div class="background" />
 
         <v-container fill-height>

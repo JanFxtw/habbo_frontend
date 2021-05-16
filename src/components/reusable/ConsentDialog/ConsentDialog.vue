@@ -6,14 +6,14 @@
         <v-card>
             <v-card>
                 <v-card-title class="headline">
-                    Aktion bestätigen
+                    <slot name="headline" />
                 </v-card-title>
 
                 <v-divider />
 
                 <v-card-text>
                     <div class="pt-2">
-                        Möchtest du diese Aktion durchführen?
+                        <slot name="content" />
                     </div>
                 </v-card-text>
 

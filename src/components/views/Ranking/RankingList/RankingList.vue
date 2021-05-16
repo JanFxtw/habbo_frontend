@@ -102,10 +102,6 @@ export default {
                     .then((response) =>
                     {
                         this.userList = response;
-                        for (let i = 0; i < 50; i++)
-                        {
-                            this.userList.push({name: 'asd', points: '123'});
-                        }
                         this.paginationLength = Math.ceil(this.userList.length / 15);
                     });
             }
