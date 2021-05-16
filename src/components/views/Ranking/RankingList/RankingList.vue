@@ -8,7 +8,7 @@
         <v-card-title>
             <v-layout align-center justify-space-between>
                 <h3 class="headline">
-                    {{ appName }} - Rankingliste
+                    Rankingliste
                 </h3>
                 <v-flex>
                     <v-img

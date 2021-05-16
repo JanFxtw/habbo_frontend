@@ -27,6 +27,14 @@ const routes = [
         path: '/help',
         name: 'Help',
         component: () => import('../views/Help.vue')
+    },
+    {
+        path: '/edit',
+        name: 'Edit',
+        component: () => import('../views/Edit.vue'),
+        meta: {
+            authRequired: true
+        }
     }
 ];
 

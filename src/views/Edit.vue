@@ -11,7 +11,7 @@
                 <v-card-title>
                     <v-layout align-center justify-space-between>
                         <h3 class="headline">
-                            Fragen & Antworten
+                            Punktevergabe
                         </h3>
                         <v-flex>
                             <v-img
@@ -26,7 +26,7 @@
                 </v-card-title>
                 <v-divider />
                 <v-card-text>
-                    Fragen & Antworten
+                    <edit-point-module />
                 </v-card-text>
             </v-card>
         </v-container>
@@ -34,8 +34,13 @@
 </template>
 
 <script>
+import EditPointModule from '@/components/views/Edit/EditPointModule';
+
 export default {
-    name: 'Help',
+    name: 'Edit',
+    components: {
+        EditPointModule
+    },
     data()
     {
         return {
@@ -46,5 +51,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import './Help.scss';
+@import './Edit.scss';
 </style>

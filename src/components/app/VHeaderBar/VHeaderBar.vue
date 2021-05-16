@@ -11,7 +11,16 @@
         >
             {{ appName }}
         </div>
+
         <v-spacer />
+
+        <v-btn
+            v-if="user"
+            icon
+            @click="$router.push({name: 'Edit'}).catch(() => {})"
+        >
+            <v-icon>mdi-clipboard-edit</v-icon>
+        </v-btn>
 
         <v-btn
             icon
@@ -49,6 +58,13 @@
                 <img :src="avaterSource(user.name)">
             </v-avatar>
         </v-btn>
+
+        <div
+            v-if="user"
+            class="caption"
+        >
+            {{ user.name }}
+        </div>
 
         <v-btn
             v-if="user"
