@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="v-footer-bar">
         <v-footer
             class="v-footer caption pa-4"
             dark
@@ -7,8 +7,8 @@
             absolute
         >
             © {{ appName }} |
-            <span class="mx-1" @click="imprint = true"> Impressum </span> |
-            <span class="mx-1" @click="privacy = true"> Datenschutz </span>
+            <span class="button mx-1" @click="imprint = true"> Impressum </span> |
+            <span class="button mx-1" @click="privacy = true"> Datenschutz </span>
         </v-footer>
 
         <imprint v-model="imprint" />
@@ -36,3 +36,7 @@ export default {
     }
 };
 </script>
+
+<style lang="scss">
+@import './VFooterBar.scss';
+</style>

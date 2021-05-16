@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import {loginUser, loginState} from '@/api/authentication';
+
 export default {
     name: 'Login',
     data()
@@ -106,9 +108,57 @@ export default {
         };
     },
     methods: {
-        signIn()
+        async signIn()
         {
             this.signingIn = true;
+
+            const userData = {
+                email: this.email,
+                password: this.password
+            };
+
+            try
+            {
+                await loginUser(userData)
+                    .then((response) =>
+                    {
+                        console.log(response);
+                        const {authenticated} = response;
+
+                        if (authenticated)
+                        {
+                            /* User.update({
+                                where: 1,
+                                data: {
+                                    authenticated: true
+                                }
+                            }); */
+
+                            // this.$router.push({name: 'Home'});
+                            console.log('login successful');
+                        }
+
+                        this.signingIn = false;
+                        this.password = '';
+                    })
+                    .then(() =>
+                    {
+                        loginState()
+                            .then(response => console.log(response));
+                    });
+            }
+            catch (error)
+            {
+                this.signingIn = false;
+                this.password = '';
+
+                /* Alert.insert({
+                    data: {
+                        type: 2,
+                        text: 'loginError'
+                    }
+                }); */
+            }
         }
     }
 };

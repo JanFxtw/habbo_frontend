@@ -6,7 +6,7 @@
     >
         <v-card>
             <v-card-title class="headline">
-                {{ appName }} - Impressum
+                Impressum
             </v-card-title>
 
             <v-divider />
@@ -52,7 +52,6 @@ export default {
     data()
     {
         return {
-            appName: process.env.VUE_APP_NAME,
             dialog: false
         };
     }
