@@ -115,10 +115,20 @@ export default {
         {
             try
             {
+                const selectedUserObject = [];
+
+                this.selectedUser.forEach((id) =>
+                {
+                    selectedUserObject.push({id});
+                });
+
                 const userData = {
-                    users: this.userList,
+                    users: this.selectedUserObject,
                     points: this.points
                 };
+
+                console.log(selectedUserObject);
+                console.log(this.userList);
 
                 await addPoints(userData)
                     .then((response) =>

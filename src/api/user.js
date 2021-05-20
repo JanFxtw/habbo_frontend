@@ -6,10 +6,10 @@ const getUserData = userData => new AjaxRequest(`${url}userData/getUserData.php`
     .expectJson()
     .post({userData});
 
-const getUserData2 = userData => new AjaxRequest(`${url}userData/getUserData.php`)
+const getUserHistory = userData => new AjaxRequest(`${url}userData/getUserHistory.php`)
     .expectJson()
     .post({userData});
 
 export {
-    getUserData, getUserData2
+    getUserData, getUserHistory
 };

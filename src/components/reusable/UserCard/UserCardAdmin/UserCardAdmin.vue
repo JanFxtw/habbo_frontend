@@ -29,9 +29,9 @@
             </v-btn>
         </v-card-text>
 
-        <admin-history v-model="showHistory" />
-        <admin-edit v-model="showEdit" />
-        <admin-penalty v-model="showPenalty" />
+        <admin-history v-model="showHistory" :user-id="userId" />
+        <admin-edit v-model="showEdit" :user-id="userId" />
+        <admin-penalty v-model="showPenalty" :user-id="userId" />
     </div>
 </template>
 
